@@ -1,0 +1,46 @@
+\mode<presentation>
+
+\definecolor{grass@blue}{rgb}{0.5, 0.7, 0.8}
+\definecolor{grass@gray}{HTML}{d1d8cd}
+
+\setbeamertemplate{background}{
+  \begin{tikzpicture}
+    \shade[top color=grass@blue, bottom color=white] (0, 0) rectangle(\the\paperwidth, 70px);
+    %\fill[color=green!40!white, overlay] (-1, -2) rectangle (10, 5);
+    \fill[color=grass@gray] (0, -7) rectangle (14, -8);
+
+    \foreach \x in {0, 7, 14}
+     \node[anchor=south, inner sep = 0pt, overlay] at (\x, -7.05) {\includegraphics[scale=0.25]{grass.png}};
+
+    \ifnum\thepage>1
+    \fi
+  \end{tikzpicture}
+
+  
+}
+
+% this will change the appearance of the title page
+%title page
+%\defbeamertemplate*{title page}{grass}[1][]
+%{
+
+% }
+\newbox\progressbar@blockbox
+\newdimen\progressbar@boxheight
+\newdimen\progressbar@boxwidth
+
+\setbeamertemplate{theorem begin}{
+%     \setbox\progressbar@blockbox=\hbox to 0.95\textwidth\bgroup\vbox\bgroup\vskip-0.25\baselineskip\raggedright\begin{minipage}{0.95\textwidth}
+%  \ifx\insertblocktitle\@empty\else{\usebeamerfont{block title}\usebeamercolor[fg]{block title\ifx#1\@empty\else\space#1\fi}
+%       \twoptoff{}\tikz\draw[fg!20!bg] (0, 0) -- (\textwidth, 0);\twopton{}\fi\usebeamerfont{block body\ifx#1\@empty\else\space#1\fi}\ifx\insertblocktitle\@empty\else\global\let\itemize=\progressbar@itemize\fi \par
+%\ifx\insertblocktitle\@empty\inserttheoremname\fi
+  \usebeamerfont{block title}
+  \usebeamercolor{block title}\inserttheoremname \\
+  \tikz[inner sep=0] \shade[bottom color=black!50!white, top color = white] (0, 0) rectangle (\linewidth, .01\linewidth);
+}
+
+\setbeamertemplate{theorem end}{
+  \tikz[inner sep=0] \shade[top color=black!40!white, bottom color = white] (0, 0) rectangle (\linewidth, .01\linewidth);
+}
+
+\mode<all>
